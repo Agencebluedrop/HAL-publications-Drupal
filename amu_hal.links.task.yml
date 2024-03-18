@@ -1,0 +1,2 @@
+amu_hal.user.publications:
+  deriver: 'Drupal\amu_hal\Plugin\Derivative\AmuHalLocalTasks'

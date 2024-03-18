@@ -1,0 +1,8 @@
+name: 'Amu HAL'
+type: module
+description: 'Affichage des publications - articles HAL AMU'
+package: Content
+core_version_requirement: ^9 || ^10
+dependencies:
+  - chosen:chosen
+configure: amu_hal.settings.form

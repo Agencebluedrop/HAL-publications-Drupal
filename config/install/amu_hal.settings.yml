@@ -1,0 +1,5 @@
+amu_hal_url_ws: 'https://api.archives-ouvertes.fr/'
+publications_title: 'Publications HAL'
+publications_user_page_title: 'Publications de @fullname'
+show_user_publications: ''
+portal: 'inserm'

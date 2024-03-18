@@ -1,0 +1,4 @@
+services:
+  amu_hal_controller:
+    class: Drupal\amu_hal\Controller\AmuHalController
+    arguments: ['@string_translation', '@request_stack', '@http_client', '@tempstore.private', '@form_builder', '@config.factory', '@database']

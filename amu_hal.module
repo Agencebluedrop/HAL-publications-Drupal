@@ -1,0 +1,238 @@
+<?php
+
+/**
+ * @file
+ * An implementation of Archives Ouvertes API.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function amu_hal_theme($existing, $type, $theme, $path)
+{
+  return [
+    'vancouver_no_et_al' => [
+      'template' => 'vancouver-no-et-al',
+      'variables' => [
+        'docs'    => NULL,
+        'display' => NULL,
+        'config'  => NULL,
+        'filters' => NULL,
+        'export'  => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_help().
+ */
+function amu_hal_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    case 'help.page.amu_hal':
+      $output = '';
+      $output .= '<p>' . t("Drupal 9 / 10 module that connects to Archive Ouverte API to display publications.") . '</p>';
+      $output .=
+        '<p>
+        <h2>' . t('Requirements') . '</h2>
+        <ul>
+          <li>' . t("The user account form should contain multiple necessary fields:") . '
+            <ul>
+              <li>
+                ' . t("The user's HAL ID.") . '
+              </li>
+              <li>
+                ' . t("The user's first name.") . '
+              </li>
+              <li>
+                ' . t("The user's last name.") . '
+              </li>
+              <li>
+                ' . t("A select list containing the user's teams options (Teams should be references to a specific content type).") . '
+              </li>
+            </ul>
+          </li>
+          <li>
+            ' . t("Chosen Drupal module") . ' -
+            <a href="https://www.drupal.org/project/chosen">
+              https://www.drupal.org/project/chosen
+            </a>.
+          </li>
+          <li>
+            Download the ' . t("Chosen") . ' -
+            <a href="https://harvesthq.github.io/chosen/
+            </a>. jQuery plugin:
+              <ul>
+                <li>Via Drush: drush chosenplugin</li>
+                <li>Or extract the plugin under libraries/chosen.</li>
+              </ul>
+          </li>
+        </ul>
+      </p>
+      <p>
+        <h2>' . t("Functionalities") . '</h2>
+        <ul>
+          <li>
+            ' . t("Choose publications source from multiple publications portals.") . '
+          </li>
+          <li>
+            ' . t("Choose whether to add a user page publications tab or not.") . '
+          </li>
+          <li>
+            ' . t("Display publications published by the website's users.") .
+        '
+          </li>
+          <li>
+            ' . t("Display publications published by the selected teams.") . '
+          </li>
+          <li>
+            ' . t("Filter by keywords.") . '
+          </li>
+          <li>
+            ' . t("Filter by publication author(s).") . '
+          </li>
+          <li>
+            ' . t("Filter by publication year(s).") . '
+          </li>
+          <li>
+            ' . t("Display publications following the Vancouver format:") . '
+            <a href="https://www.zotero.org/styles?q=id%3Avancouver-brackets-no-et-al">
+              https://www.zotero.org/styles?q=id%3Avancouver-brackets-no-et-al
+            </a>
+            .
+          </li>
+          <li>
+            ' . t("xport a single or multiple publications in BibTex.") .
+        '
+          </li>
+          <li>
+            ' . t("Export a single or multiple publications in RTF.") . '
+          </li>
+        </ul>
+      </p>
+      <p>
+        <h2>' . t("Add new HAL block") . '</h2>
+        <ul>
+          <li>
+          ' . t("Create and configure a block in") . '
+            <a href="/admin/structure/block">
+              Structure – Blocks
+            </a>.
+          </li>
+          <li>
+            ' . t("Choose to either display filters or not.") . '
+          </li>
+          <li>
+            ' . t("Choose between a simple or multiple authors select list.") . '
+          </li>
+          <li>
+            ' . t("Choose between a simple or multiple years select list.") . '
+          </li>
+          <li>
+            ' . t("Filter publications by teams (leave empty for all teams).") . '
+          </li>
+        </ul>
+      </p>
+      <p>
+        <h2>' . t("Publications by author") . '</h2>
+        <ul>
+          <li>
+            ' . t("Check the \"Display user tab\" in the module configuration form:")
+        . '
+             <a href="/admin/hal">
+              /admin/hal
+             </a>.
+          </li>
+          <li>
+            ' . t("Fill the \"user page publication tab title\" field.") .
+        '
+          </li>
+        </ul>
+      </p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function amu_hal_form_alter(&$form, &$form_state, $form_id)
+{
+
+  // Check if the form is the user edit form.
+  if ($form_id == 'user_register_form' || $form_id == 'user_form') {
+
+    // Get the current route match service.
+    $route_match = \Drupal::service('current_route_match');
+    // Get the route parameters.
+    $route_parameters = $route_match->getParameters();
+
+    if ($form_id == 'user_form') {
+        $user = $route_parameters->get('user');
+        $equipe_hal = $user->get('field_equipe_hal')->getValue();
+        $identifiant_hal = $user->get('field_identifiant_hal')->value;
+        $nom_hal = $user->get('field_nom_hal')->value;
+        $prenom_hal = $user->get('field_prenom_hal')->value;
+
+        if(!empty($equipe_hal)){
+          $equipe_values = [];
+          foreach ($equipe_hal as $key => $value) {
+            $equipe_values[] = $value['value'];
+          }
+        }
+    }
+
+    // Add your custom field to the form.
+    $form['field_equipe_hal'] = [
+      '#type' => 'select', // Change to 'textfield' or other appropriate type if needed.
+      '#title' => t('Équipe HAL'),
+      '#options' => [
+        5 => t('<a href="/organisation/équipe-administrative-et-technique">Équipe administrative</a>'),
+        6 => t('<a href="http://www.orspaca.org/">ORS</a>'),
+        7 => t('<a href="/organisation/plateforme-d\'enquête">Plateforme d\'enquête</a>'),
+        8 => t('<a href="/organisation/plateforme-statistique">Plateforme statistique</a>'),
+        9 => t('<a href="/organisation/direction">Direction</a>'),
+        2 => t('<a href="/organisation/canbios">Équipe CANBIOS</a>'),
+        10 => t('<a href="/organisation/santercom">Équipe SanteRCom</a>'),
+        11 => t('<a href="/organisation/quantim">Équipe QuanTIM</a>'),
+      ],
+      '#default_value' => isset($equipe_values) ? $equipe_values : '',
+      '#weight' => 50, // Adjust the weight to control the field's position on the form.
+      '#multiple' => TRUE, // Use this if the field is multivalued.
+      // Add other necessary properties based on your field type.
+    ];
+
+    $form['field_identifiant_hal'] = [
+      '#type' => 'textfield', // Change to 'password' or other appropriate type if needed.
+      '#title' => t('Identifiant HAL'),
+      '#default_value' => $identifiant_hal !== null ? $identifiant_hal : '',
+      '#maxlength' => 255, // Set the maximum length based on the field configuration.
+      '#required' => FALSE, // Adjust as needed.
+      '#weight' => 55, // Adjust the weight to control the field's position on the form.
+      // Add other necessary properties based on your field type.
+    ];
+
+    $form['field_nom_hal'] = [
+      '#type' => 'textfield',
+      '#title' => t('Nom HAL'),
+      '#default_value' => $nom_hal !== null ? $nom_hal : '',
+      '#maxlength' => 100, // Set the maximum length based on the field configuration.
+      '#required' => FALSE, // Adjust as needed.
+      '#weight' => 60, // Adjust the weight to control the field's position on the form.
+      // Add other necessary properties based on your field type.
+    ];
+
+    $form['field_prenom_hal'] = [
+      '#type' => 'textfield',
+      '#title' => t('Prénom HAL'),
+      '#default_value' => $prenom_hal !== null ? $nom_hal : '',
+      '#maxlength' => 60, // Set the maximum length based on the field configuration.
+      '#required' => FALSE, // Adjust as needed.
+      '#weight' => 70, // Adjust the weight to control the field's position on the form.
+      // Add other necessary properties based on your field type.
+    ];
+  }
+}

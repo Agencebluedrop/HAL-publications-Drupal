@@ -1,0 +1,20 @@
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_equipe_hal
+  module:
+    - options
+    - user
+id: user.user.field_equipe_hal
+field_name: field_equipe_hal
+entity_type: user
+bundle: user
+label: Équipe HAL
+description: ""
+required: false
+translatable: true
+default_value: {}
+default_value_callback: ""
+settings: {}
+field_type: list_integer

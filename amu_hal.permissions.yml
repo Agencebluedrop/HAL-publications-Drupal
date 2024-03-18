@@ -1,0 +1,3 @@
+administer hal publications:
+  title: 'Administer HAL Publications'
+  description: 'Perform administration tasks on amu_hal module.'

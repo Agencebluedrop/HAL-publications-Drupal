@@ -1,0 +1,45 @@
+langcode: und
+status: true
+dependencies:
+  module:
+    - options
+    - user
+third_party_settings: {  }
+id: user.field_equipe_hal
+field_name: field_equipe_hal
+entity_type: user
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 5
+      label: '<a href="/organisation/équipe-administrative-et-technique">Équipe administrative</a>'
+    -
+      value: 6
+      label: '<a href="http://www.orspaca.org/">ORS</a>'
+    -
+      value: 7
+      label: '<a href="/organisation/plateforme-d''enquête">Plateforme d''enquête</a>'
+    -
+      value: 8
+      label: '<a href="/organisation/plateforme-statistique">Plateforme statistique</a>'
+    -
+      value: 9
+      label: '<a href="/organisation/direction">Direction</a>'
+    -
+      value: 2
+      label: '<a href="/organisation/canbios">Équipe CANBIOS</a>'
+    -
+      value: 10
+      label: '<a href="/organisation/santercom">Équipe SanteRCom</a>'
+    -
+      value: 11
+      label: '<a href="/organisation/quantim">Équipe QuanTIM</a>'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,50 @@
+amu_hal.settings.form:
+  path: '/admin/config/hal'
+  defaults:
+    _form: '\Drupal\amu_hal\Form\AmuHalConfigForm'
+    _title: 'AMU HAL'
+  requirements:
+    _permission: 'administer hal publications'
+
+amu_hal.export.bibtex.doc:
+  path: '/bibtex/{id}'
+  defaults:
+    _controller: '\Drupal\amu_hal\Controller\AmuHalController::amuHalBibtex'
+    _title: 'Export Bibtex'
+  requirements:
+    _permission: 'access content'
+
+amu_hal.export.bibtex.mass:
+  path: '/bibtex'
+  defaults:
+    _controller: '\Drupal\amu_hal\Controller\AmuHalController::amuHalBibtexSession'
+    _title: 'Export Bibtex'
+  requirements:
+    _permission: 'access content'
+
+amu_hal.export.rtf.doc:
+  path: '/rtf/{id}'
+  defaults:
+    _controller: '\Drupal\amu_hal\Controller\AmuHalController::amuHalRtf'
+    _title: 'Export RTF'
+  requirements:
+    _permission: 'access content'
+
+amu_hal.export.rtf.mass:
+  path: '/rtf'
+  defaults:
+    _controller: '\Drupal\amu_hal\Controller\AmuHalController::amuHalRtfSession'
+    _title: 'Export RTF'
+  requirements:
+    _permission: 'access content'
+
+amu_hal.publications.user:
+  path: '/user/{user}/publications'
+  defaults:
+    _controller: '\Drupal\amu_hal\Controller\AmuHalController::amuHalAuthorPub'
+    _title_callback: '\Drupal\amu_hal\Controller\AmuHalController::amuHalSetTitle'
+  requirements:
+    _permission: 'access content'
+  parameters:
+    user:
+      type: entity:user

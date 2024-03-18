@@ -1,0 +1,16 @@
+{
+  "name": "drupal/hal_publications",
+  "description": "Affichage des publications - articles HAL AMU",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/hal_publications",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "drupal/core": "^9 || ^10",
+    "composer/installers": "^2",
+    "drupal/chosen": "^4"
+  },
+  "repositories": [],
+  "extra": {}
+}

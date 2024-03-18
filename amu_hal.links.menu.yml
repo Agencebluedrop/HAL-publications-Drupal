@@ -1,0 +1,6 @@
+amu_hal.admin:
+  title: 'AMU HAL'
+  description: 'Manage settings for AMU HAL'
+  parent: system.admin_config_system
+  route_name: amu_hal.settings.form
+  weight: 1

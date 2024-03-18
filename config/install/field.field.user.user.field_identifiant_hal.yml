@@ -1,0 +1,19 @@
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_identifiant_hal
+  module:
+    - user
+id: user.user.field_identifiant_hal
+field_name: field_identifiant_hal
+entity_type: user
+bundle: user
+label: "Identifiant HAL (Auteur)"
+description: "<b>ATTENTION ce n'est pas un numéro.</b> Généralement votre IdHAL est formé à partir de votre prénom et nom\r\n"
+required: false
+translatable: true
+default_value: {}
+default_value_callback: ""
+settings: {}
+field_type: string

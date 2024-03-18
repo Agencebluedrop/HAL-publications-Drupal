@@ -1,0 +1,96 @@
+{% if config.filtres.1 == 1 %}
+  <div class = "hal-filters grid_8  push_2">
+    {{ filters }}
+  </div>
+{% endif %}
+{% if display == 'teaser' %}
+  {% if docs|length <= 0 %}
+    <div class="hal-publications grid_8 push_2">
+        <div class="hal-main">
+          {{ 'No results'|t }}
+        </div>
+    </div>
+  {% else %}
+    <div class="hal-publications grid_8 push_2">
+      <div class="toggle-export">
+        {{ export }}
+      </div>
+      {% for doc in docs %}
+        <div class="hal-publication" id="{{ doc.halId_s }}">
+          <div class="hal-main">
+            <span class="hal-authors">
+              {% set count_authors = doc.authLastNameFirstName_s|length %}
+              {% set concat_authors = "" %}
+              {% for key, author in doc.authLastNameFirstName_s %}
+                {% if key == count_authors - 1 %}
+                  {% set concat_authors = concat_authors ~ author %}
+                {% else %}
+                  {% set concat_authors = concat_authors ~ author ~ ", " %}
+                {% endif %}
+              {% endfor %}
+              {{ concat_authors ~ "." }}
+            </span>
+            <a href="{{ doc.uri_s }}">
+              <span class="hal-title">
+                {% if doc.title_s.0|slice(-1) == '.' or doc.title_s.0|slice(-1) == '!' or doc.title_s.0|slice(-1) == '?' %}
+                  {{ doc.title_s.0 }}
+                {% else %}
+                  {{ doc.title_s.0 ~ "." }}
+                {% endif %}
+              </span>
+            </a>
+            <span class="hal-misc">
+              {% if doc.journalTitle_s|length > 0 %}
+                <span class="hal-journal">
+                  {{ doc.journalTitle_s }}
+                </span>
+              {% endif %}
+              {% if doc.producedDateY_i|length > 0 %}
+                {{ " " ~ doc.producedDateY_i }}
+                {% if doc.volume_s|length > 0 or doc.issue_s.0|length > 0 or doc.page_s|length > 0 %}
+                  {{ ";" }}
+                {% else %}
+                  {{ "." }}
+                {% endif %}
+              {% endif %}
+              {% if doc.volume_s|length > 0 %}
+                {{ doc.volume_s }}
+              {% endif %}
+              {% if doc.issue_s.0|length > 0 %}
+                {{ "(" ~ doc.issue_s.0 ~ ")" }}
+              {% endif %}
+              {% if doc.page_s|length > 0 %}
+                {% if doc.volume_s|length > 0 or doc.issue_s.0|length > 0 %}
+                    {{ ":" }}
+                {% endif %}
+                {{ doc.page_s ~ "." }}
+              {% endif %}
+            </span>
+            {% if doc.publisherLink_s.0|length > 0 %}
+              <span class="hal-url">
+                <a href="{{ doc.publisherLink_s.0 }}">{{ doc.publisherLink_s.0 }}</a>
+              </span>
+            {% endif %}
+            {% if doc.files_s.0|length > 0 %}
+              {% if "Publisher's version/PDF may be used" in doc.journalSherpaCondition_s %}
+                <a href="{{ doc.files_s.0 }}" target="_blank" title="{{ doc.files_s.0 }}">
+                  <span class="hal-pdf"></span>
+                </a>
+              {% else %}
+                {% if doc.today_unix > doc.date_unix %}
+                  <a href="{{ doc.files_s.0 }}" target="_blank" title="{{ doc.files_s.0 }}">
+                    <span class="hal-pdf"></span>
+                  </a>
+                {% else %}
+                  <span class="hal-pdf-embargo" title="{{ doc.embargo }}"></span>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+            <a target="_blank" href="/bibtex/{{ doc.halId_s }}" title="Export BibTex"><span class="export-bibtex"></span></a>
+            <a target="_blank" href="/rtf/{{ doc.halId_s }}" title="Export RTF"><span class="export-rtf"></span></a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endif %}

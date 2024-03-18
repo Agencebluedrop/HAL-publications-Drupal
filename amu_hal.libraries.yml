@@ -1,0 +1,13 @@
+libs:
+  version: '9.x'
+  css:
+    theme:
+      css/amu_hal.css: {}
+  js:
+    js/amu_hal.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - core/drupalSettings
+    - chosen/drupal.chosen.all

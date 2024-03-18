@@ -1,0 +1,71 @@
+<?php
+
+use Drupal\block\Entity\Block;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_uninstall().
+ */
+function amu_hal_uninstall()
+{
+    // Delete blocks created by the module.
+    $block_ids = \Drupal::entityQuery('block')
+        ->condition('plugin', 'hal_publications') // Replace with your actual block plugin ID.
+        ->execute();
+
+    if (!empty($block_ids)) {
+        // Delete the blocks.
+        foreach ($block_ids as $block_id) {
+            $block = Block::load($block_id);
+            if ($block) {
+                $block->delete();
+            }
+        }
+    }
+
+    // Delete configuration.
+    $config = \Drupal::configFactory()->getEditable('amu_hal.settings');
+    if ($config->getOriginal()) {
+        $config->delete();
+    }
+
+    // Deleting field storage.
+    $field_storage = FieldStorageConfig::loadByName('user', 'field_equipe_hal');
+    if ($field_storage) {
+        $field_storage->delete();
+    }
+    $field_storage = FieldStorageConfig::loadByName('user', 'field_identifiant_hal');
+    if ($field_storage) {
+        $field_storage->delete();
+    }
+    $field_storage = FieldStorageConfig::loadByName('user', 'field_nom_hal');
+    if ($field_storage) {
+        $field_storage->delete();
+    }
+    $field_storage = FieldStorageConfig::loadByName('user', 'field_prenom_hal');
+    if ($field_storage) {
+        $field_storage->delete();
+    }
+
+    // Deleting field.
+    $field = FieldConfig::loadByName('user', 'user', 'field_equipe_hal');
+    if ($field) {
+        $field->delete;
+    }
+    $field = FieldConfig::loadByName('user', 'user', 'field_identifiant_hal');
+    if ($field) {
+        $field->delete;
+    }
+    $field = FieldConfig::loadByName('user', 'user', 'field_nom_hal');
+    if ($field) {
+        $field->delete;
+    }
+    $field = FieldConfig::loadByName('user', 'user', 'field_prenom_hal');
+    if ($field) {
+        $field->delete;
+    }
+
+    // Clear caches after uninstallation.
+    drupal_flush_all_caches();
+}

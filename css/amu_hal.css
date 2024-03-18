@@ -1,0 +1,101 @@
+.hal-filters {
+  margin-bottom: 56px;
+}
+.hal-filters .form-type-textfield input {
+  width: 100%;
+}
+.hal-filters .form-type-select {
+  width: 50%;
+}
+.hal-filters .form-type-select select,
+.hal-filters .form-type-select .chosen-container {
+  width: 100%;
+}
+.hal-publications > input {
+  margin-bottom: 24px;
+}
+.hal-publications > input.hal-checked {
+  float: left;
+}
+.hal-publications .toggle-export {
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+.hal-publication {
+  margin-bottom: 24px;
+  position: relative;
+  font-family: Arial,sans-serif;
+}
+.hal-publication input {
+  position: absolute;
+}
+.hal-publication .hal-main {
+  padding-left: 24px;
+}
+
+.hal-publication .hal-authors,
+.hal-publication .hal-url {
+  color: #3373ba;
+}
+
+.hal-publication .hal-title {
+  font-weight: bold;
+  color: #336599;
+}
+
+.hal-publication .hal-journal {
+  font-style: italic;
+}
+
+.hal-publication .export-bibtex::before {
+  content: "";
+  background-image: url("../images/bib.jpg");
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hal-publication .export-rtf::before {
+  content: "";
+  background-image: url("../images/rtf.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hal-publication .hal-pdf::before {
+  content: "";
+  background-image: url("../images/pdf.png");
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hal-publication .hal-pdf-embargo::before {
+  content: "";
+  background-image: url("../images/pdf-embargo.png");
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 19px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hal-publication span.ext {
+  display: none;
+}
+
+.hal-main-bibtex {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-family: monospace;
+  color: #000;
+  font-size: 13px;
+}

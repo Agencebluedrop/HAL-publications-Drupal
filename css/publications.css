@@ -1,0 +1,359 @@
+/*------------------------------------*\
+  CONTENTS
+\*------------------------------------*/
+/**
+*  BLOCKS
+*  Academic
+*  Fancy
+*  SKIN
+*  BACK-OFFICE
+*
+*/
+
+
+/*------------------------------------*\
+  ==BLOCKS
+\*------------------------------------*/
+
+.block-amu-hal {
+  border-radius: 3px;
+  /*background-color: rgb(233, 233, 233);*/
+}
+
+.block-amu-hal::before {
+  position: relative;
+  top: -3px;
+  left: 50%;
+  visibility: visible;
+  margin-left: -19px;
+  color: white;
+  content: "\f0d7  ";
+  font-size: 66px;
+  font-family: "FontAwesome", serif;
+  line-height: 0;
+}
+
+.hal-pub a {
+  color: #283054;
+  text-decoration: none;
+}
+
+/* academic  */
+/* ------------- */
+
+.hal-pub a {
+  word-break: break-all;
+}
+
+.hal-pub {
+  margin-bottom: 25px;
+}
+
+.not-front .block.block-amu-hal {
+  padding-left: 0;
+}
+
+#block-amu-hal-last-hal-publications .hal-pub-list {
+  padding-left: 0;
+}
+
+#block-amu-hal-last-hal-publications .hal-pub-list li {
+  list-style-type: none;
+}
+
+#block-amu-hal-last-hal-publications .hal-more-pub a {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 30%;
+}
+
+.hal-pub-list li {
+  margin: 15px 0 0 0;
+}
+
+.hal-pub-list li.hal-pub a,
+.highlighted .hal-pub-list li.hal-pub a {
+  border-bottom: inherit;
+  color: #333;
+}
+
+.highlighted .hal-pub-list li.hal-pub a:hover {
+  border-bottom: solid thin;
+}
+
+.region-content .content .hal-pub-list li a {
+  color: #333;
+}
+
+.block .hal-year-nav li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.hal_pub_doctype {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: .7em;
+}
+
+.doc-authors,
+.doc-keywords {
+  padding-left: 20px;
+}
+
+/*.doc-authors li::before,
+.doc-keywords li::before {
+  content: "- ";
+}*/
+
+.doc-authors li,
+.doc-keywords li {
+  display: inline;
+  padding: 0 5px !important;
+}
+
+.doc-type {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-left: 10px !important;
+}
+
+.doc-abstract {
+  margin: 0 0 25px 10px;
+}
+
+
+.hal-year-nav {
+  display: flex;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Fancy  */
+/* ------------- */
+
+.hal-pub-list-type-2 {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.hal-pub-list-type-2 li {
+  flex-basis: calc(100%);
+  padding: 0 !important;
+}
+
+.hal-pub-list-type-2 li a {
+  background-color: #fff;
+}
+
+.hal-pub-list-type-2 li.hal-pub > a {
+  display: inline-block;
+  margin: 0;
+  /*padding: 10px;*/
+  border-bottom: none;
+  color: inherit;
+  word-break: normal;
+}
+
+.hal-pub-list-type-2 li.hal-pub > a:hover {
+  border-bottom: none;
+}
+
+.hal-pub-list-type-2 .hal-pub__title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.3em;
+  color: #336599;
+  display: inline !important;
+}
+
+.hal-pub-list-type-2 .hal-pub__authors {
+  margin-bottom: 20px;
+  padding-left: 5px;
+  list-style: none;
+  display: inline !important;
+  color: #3373ba;
+  word-break: normal;
+}
+
+.hal-pub__authors a {
+  text-align: left;
+  word-break: normal;
+  margin-bottom: 0px;
+}
+
+.hal-pub__authors_2 ul li {
+  padding: 0 !important;
+}
+
+.hal-pub-list-type-2 .hal-pub__authors li {
+  display: inline;
+}
+
+.hal-pub__authors_2 li {
+  display: inline;
+  padding: 0;
+}
+
+.hal-pub-list-type-2 .hal-pub__authors li+li::before {
+  content: ", ";
+}
+
+.hal-pub-list-type .hal-pub__authors_2 li+li::before {
+  content: ", ";
+  margin-left: -25px;
+}
+
+.hal-pub__citation-ref {
+  font-style: italic;
+  display: inline !important;
+}
+
+.hal-pub__label-ref {
+  display: inline !important;
+}
+
+.hal-more-pub a.more {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 25em;
+  border-radius: 25px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all .2s ease-in-out 0s;
+}
+
+.hal-more-pub a.more:hover {
+  text-decoration: none;
+  opacity: .7;
+}
+
+/*------------------------------------*\
+  ==SKIN
+\*------------------------------------*/
+/*.hal-pub-list-type-2 li.hal-pub a:hover {
+  background-color: rgb(51, 51, 51);
+    background-color: rgb(40, 48, 84);
+    color: rgb(255, 255, 255);
+}*/
+
+/*Pink */
+.hal-pink ul.hal-pub-list-type-2 li.hal-pub a:hover {
+  background-color: rgb(150, 60, 245);
+  color: rgb(255, 255, 255);
+}
+
+.hal-pink ul.hal-pub-list-type-2 a:hover .hal-pub__citation-ref {
+  color: rgb(180, 180, 180);
+}
+
+.hal-pink.block a.more {
+  background-color: rgb(150, 60, 245);
+}
+
+/*Bleu foncé */
+.hal-dark-blue ul.hal-pub-list-type-2 li.hal-pub a:hover {
+  background-color: rgb(18, 72, 114);
+  color: rgb(255, 255, 255);
+}
+
+.hal-dark-blue ul.hal-pub-list-type-2 a:hover .hal-pub__citation-ref {
+  color: rgb(180, 180, 180);
+}
+
+.hal-dark-blue.block a.more {
+  background-color: rgb(18, 72, 114);
+}
+
+/*Cyan*/
+.hal-cyan ul.hal-pub-list-type-2 li.hal-pub a:hover {
+  background-color: rgb(54, 194, 242);
+  color: rgb(255, 255, 255);
+}
+
+.hal-cyan.block .content a.more {
+  background-color: rgb(54, 194, 242);
+}
+
+/*orange*/
+.hal-orange ul.hal-pub-list-type-2 li.hal-pub a:hover {
+  background-color: rgb(222, 105, 0);
+  color: rgb(255, 255, 255);
+}
+
+.hal-orange.block .content a.more {
+  background-color: rgb(222, 105, 0);
+}
+
+@media (max-width: 767px) {
+  ul.hal-pub-list-type-2 li {
+    flex-basis: 100%;
+  }
+}
+
+
+/*------------------------------------*\
+  ==BACK-OFFICE
+\*------------------------------------*/
+
+.page-admin-structure-block-manage-multiblock textarea#edit-readonly {
+  border: none;
+  cursor: default;
+}
+
+.popup-style-white .popup-element-body div.inner a,
+.popup-style-white .popup-element-body div.inner a:hover {
+  color: #0071b9;
+}
+
+.block .hal-year-nav li {
+  display: block;
+  margin: 4px 5px;
+  padding: 4px 8px;
+  background-color: #283054;
+}
+
+.block .hal-year-nav li a {
+  border-bottom: inherit;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  #block-amu-hal-last-hal-publications .hal-pub {
+    margin-bottom: 30px;
+  }
+
+  .page-docs h1.title {
+    font-size: 1.8em;
+  }
+
+  .block .hal-year-nav > li {
+    margin-bottom: 20px;
+    padding: 4px 8px;
+  }
+
+  .hal-year-nav li a {
+    font-size: 1.3em;
+  }
+}
+
+.hal-pub-id-page {
+  display: inline;
+  padding: 0;
+}
+
+.hal-pub-id-page::before {
+  content: " <";
+}
+
+.hal-pub-id-page::after {
+  content: "> ";
+}
