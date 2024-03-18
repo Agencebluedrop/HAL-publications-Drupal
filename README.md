@@ -1,4 +1,4 @@
-# AMU_HAL
+# HAL-Drupal Archives Ouvertes connector
 Drupal 9 / 10 module that connects to Archive Ouverte API to display publications.
 
 # Requirements
