@@ -7,6 +7,9 @@ Drupal 9 / 10 module that connects to Archive Ouverte API to display publication
   * The user's first name.
   * The user's last name.
   * A select list containing the user's teams options (Teams should be references to a specific content type).
+    
+    ![User account fields](screenshots/user_fields_created_by_hal_module.png)
+    
 * Chosen Drupal module - https://www.drupal.org/project/chosen.
 * Download the Chosen jQuery plugin - https://harvesthq.github.io/chosen
   * Via Drush: drush chosenplugin
@@ -27,10 +30,19 @@ https://www.zotero.org/styles?q=id%3Avancouver-brackets-no-et-al.
 
 # Add new HAL block
 * Create and configure a block (AMU HAL) in Structure – Blocks
+  
+  ![HAL AMU block](screenshots/block_hal.png)
+ 
 * Choose to either display filters or not.
 * Choose between a simple or multiple authors select list.
 * Choose between a simple or multiple years select list.
+  
+  ![HAL AMU block configuration](screenshots/block_hal_configuration.png)
+  
 * Filter publications by teams (leave empty for all teams).
+
+  ### HAL AMU Block:
+  ![HAL Block output](screenshots/affichage_de_block_HAL_AMU.png)
 
 # Publications by author
 * Check the "Display user tab" in the module configuration form. /admin/hal.
