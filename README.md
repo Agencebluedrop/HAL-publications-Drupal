@@ -1,6 +1,8 @@
 # HAL-Drupal Archives Ouvertes connector
 Drupal 9 / 10 module that connects to Archive Ouverte API to display publications.
 
+<img src="screenshots/HAL-accueil.png" alt="Hal archives ouuvertes" width="500"/>
+
 # Requirements
 * The user account form should contain multiple necessary fields:
   * The user's HAL ID.
